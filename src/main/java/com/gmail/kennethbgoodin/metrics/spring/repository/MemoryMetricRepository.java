@@ -8,6 +8,9 @@ import java.util.Collections;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 
+/**
+ * A metric repository that stores metrics in memory
+ */
 @Repository
 public class MemoryMetricRepository implements MetricRepository {
 
