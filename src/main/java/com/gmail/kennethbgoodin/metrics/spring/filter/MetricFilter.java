@@ -31,7 +31,12 @@ public class MetricFilter implements Filter {
     @Override
     public void doFilter(ServletRequest servletRequest, ServletResponse servletResponse, FilterChain filterChain) throws IOException, ServletException {
         HttpServletRequest req = (HttpServletRequest) servletRequest;
-        metrics.insert(MetricKeys.REQUEST_BODY_SIZE_BYTES, req, req.getContentLengthLong());
+        long bodySize = req.getContentLengthLong();
+        // -1 is returned when there is no body, we don't want negative values
+        if (bodySize < 0) {
+            bodySize = 0;
+        }
+        metrics.insert(MetricKeys.REQUEST_BODY_SIZE_BYTES, req, bodySize);
 
         HttpServletResponse resp = (HttpServletResponse) servletResponse;
         // add header for later
