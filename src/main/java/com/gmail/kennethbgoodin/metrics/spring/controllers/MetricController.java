@@ -10,7 +10,6 @@ import javax.servlet.http.HttpServletResponse;
 import java.util.AbstractMap;
 import java.util.Arrays;
 import java.util.Map;
-import java.util.Optional;
 
 @RestController
 public class MetricController {
@@ -24,8 +23,9 @@ public class MetricController {
     @RequestMapping("/metrics")
     public String index() {
         StringBuilder index = new StringBuilder("Metrics")
-                .append("<br><br>")
-                .append("------------------------");
+                .append("<br>")
+                .append("------------------------")
+                .append("<br><br>");
         Arrays.stream(MetricKeys.values())
                 .forEach(key -> {
                     Map.Entry<String, Long> max = metrics.max(key)
@@ -34,12 +34,12 @@ public class MetricController {
                             .orElse(new AbstractMap.SimpleEntry<>("N/A", 0L));
                     double avg = metrics.average(key);
 
-                    index.append("<br>")
-                            .append(key)
-                            .append("br")
-                            .append("Request id: ").append(min.getKey()).append(" min: ").append(min.getValue()).append(key.getDisplaySuffix()).append("<br>")
-                            .append("Request id: ").append(max.getKey()).append(" max: ").append(max.getValue()).append(key.getDisplaySuffix()).append("<br>")
-                            .append("Average: ").append(avg).append("<br>");
+                    index.append(key).append("<br>")
+                            .append("Request id: ").append(min.getKey()).append(" min: ").append(min.getValue())
+                                    .append(" ").append(key.getDisplaySuffix()).append("<br>")
+                            .append("Request id: ").append(max.getKey()).append(" max: ").append(max.getValue())
+                                    .append(" ").append(key.getDisplaySuffix()).append("<br>")
+                            .append("Average: ").append(avg).append(key.getDisplaySuffix()).append("<br><br>");
                 });
 
         return index.toString();
