@@ -27,9 +27,9 @@ public class MetricsTests {
 
     @Before
     public void setup() {
-        metrics.insertWithId(key, "a",1);
-        metrics.insertWithId(key, "b",2);
-        metrics.insertWithId(key, "c",3);
+        metrics.insertWithId(key, "a", 1);
+        metrics.insertWithId(key, "b", 2);
+        metrics.insertWithId(key, "c", 3);
     }
 
     @Test
@@ -49,4 +49,5 @@ public class MetricsTests {
         double avg = metrics.average(key);
         Assert.isTrue(avg == 2.0D, String.format("expected avg of 2.0, got %f", avg));
     }
+
 }

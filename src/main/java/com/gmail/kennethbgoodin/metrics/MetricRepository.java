@@ -11,8 +11,8 @@ public interface MetricRepository {
      * Stores the data for the given metric and id
      *
      * @param metric The metric key
-     * @param id The unique id for this request
-     * @param value The value for this metric
+     * @param id     The unique id for this request
+     * @param value  The value for this metric
      */
     void insert(MetricKey metric, String id, long value);
 
