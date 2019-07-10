@@ -34,12 +34,12 @@ public class MetricController {
                             .orElse(new AbstractMap.SimpleEntry<>("N/A", 0L));
                     double avg = metrics.average(key);
 
-                    index.append(key).append("<br>")
-                            .append("Request id: ").append(min.getKey()).append(" min: ").append(min.getValue())
-                                    .append(" ").append(key.getDisplaySuffix()).append("<br>")
-                            .append("Request id: ").append(max.getKey()).append(" max: ").append(max.getValue())
-                                    .append(" ").append(key.getDisplaySuffix()).append("<br>")
-                            .append("Average: ").append(avg).append(key.getDisplaySuffix()).append("<br><br>");
+                    index.append("Metric: ").append(key).append("<br>")
+                            .append("Min: ").append(min.getValue()).append(key.getDisplaySuffix()).append(", request id: ")
+                                    .append(min.getKey()).append("<br>")
+                            .append("Max: ").append(max.getValue()).append(key.getDisplaySuffix()).append(", request id: ")
+                                    .append(max.getKey()).append("<br>")
+                            .append("Average: ").append(String.format("%.3f", avg)).append(key.getDisplaySuffix()).append("<br><br>");
                 });
 
         return index.toString();

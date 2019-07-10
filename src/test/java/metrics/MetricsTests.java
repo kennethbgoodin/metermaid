@@ -23,7 +23,7 @@ public class MetricsTests {
             .withRepository(Metrics.inMemoryRepository())
             .build();
 
-    private final MetricKey key = MetricKeys.RESPONSE_TIME_NS;
+    private final MetricKey key = MetricKeys.RESPONSE_TIME_MS;
 
     @Before
     public void setup() {

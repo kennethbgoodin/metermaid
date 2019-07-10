@@ -4,8 +4,8 @@ package com.gmail.kennethbgoodin.metrics;
  * Describes some given/example metric keys
  */
 public enum MetricKeys implements MetricKey {
-    RESPONSE_TIME_NS("resp-time", "ns"),
-    REQUEST_BODY_SIZE_BYTES("req-body-size", "bytes");
+    RESPONSE_TIME_MS("resp-time", "ms"),
+    REQUEST_BODY_SIZE_BYTES("req-body-size", " bytes");
 
     private final String key;
     private final String displaySuffix;

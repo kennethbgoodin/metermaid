@@ -44,9 +44,9 @@ public class MetricFilter implements Filter {
 
         // since we are the first in the filter chain we can measure the time it takes to execute the entire chain up
         // until just before the response is sent
-        long now = System.nanoTime();
+        long now = System.currentTimeMillis();
         filterChain.doFilter(servletRequest, servletResponse);
-        long elapsed = System.nanoTime() - now;
-        metrics.insert(MetricKeys.RESPONSE_TIME_NS, req, elapsed);
+        long elapsed = System.currentTimeMillis() - now;
+        metrics.insert(MetricKeys.RESPONSE_TIME_MS, req, elapsed);
     }
 }
