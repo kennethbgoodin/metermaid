@@ -3,6 +3,7 @@ package com.gmail.kennethbgoodin.metrics.spring.filter;
 import com.gmail.kennethbgoodin.metrics.MetricKeys;
 import com.gmail.kennethbgoodin.metrics.Metrics;
 import org.springframework.core.annotation.Order;
+import org.springframework.stereotype.Component;
 
 import javax.servlet.Filter;
 import javax.servlet.FilterChain;
@@ -12,28 +13,19 @@ import javax.servlet.ServletResponse;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
-import java.util.UUID;
 
 /**
  * An example filter for spring that collects metrics data on request size and response time
  */
 // first in the filter chain
 @Order(1)
+@Component
 public class MetricFilter implements Filter {
 
     private final Metrics<HttpServletRequest, HttpServletResponse> metrics;
 
-    MetricFilter(Metrics<HttpServletRequest, HttpServletResponse> metrics) {
+    public MetricFilter(Metrics<HttpServletRequest, HttpServletResponse> metrics) {
         this.metrics = metrics;
-    }
-
-    public MetricFilter() {
-        // example builder usage
-        this(Metrics.<HttpServletRequest, HttpServletResponse>builder()
-                .idRequestsWith(req -> UUID.randomUUID().toString())
-                .addHeaderToResponseWith(HttpServletResponse::addHeader)
-                .withRepository(Metrics.inMemoryRepository())
-                .build());
     }
 
     @Override
