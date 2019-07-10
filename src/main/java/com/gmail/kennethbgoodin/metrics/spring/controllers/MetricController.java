@@ -36,8 +36,9 @@ public class MetricController {
 
                     index.append("<br>")
                             .append(key)
-                            .append("Request id:" ).append(min.getKey()).append(" min: ").append(min.getValue()).append("<br>")
-                            .append("Request id: ").append(max.getKey()).append(" max: ").append(max.getValue()).append("<br>")
+                            .append("br")
+                            .append("Request id: ").append(min.getKey()).append(" min: ").append(min.getValue()).append(key.getDisplaySuffix()).append("<br>")
+                            .append("Request id: ").append(max.getKey()).append(" max: ").append(max.getValue()).append(key.getDisplaySuffix()).append("<br>")
                             .append("Average: ").append(avg).append("<br>");
                 });
 

@@ -10,4 +10,9 @@ public interface MetricKey {
      */
     String getKey();
 
+    /**
+     * @return the String suffix to append to this metric when displaying
+     */
+    String getDisplaySuffix();
+
 }
