@@ -2,6 +2,8 @@ package com.gmail.kennethbgoodin.metrics;
 
 import com.gmail.kennethbgoodin.metrics.spring.repository.MemoryMetricRepository;
 import org.apache.logging.log4j.util.TriConsumer;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.util.Comparator;
 import java.util.Map;
@@ -23,6 +25,7 @@ import java.util.function.Function;
 public class Metrics<REQ, RESP> {
 
     public static final String METRIC_ID_HEADER = "metrics-id";
+    private static final Logger logger = LoggerFactory.getLogger(Metrics.class);
 
     private final Function<REQ, String> keyFunction;
     private final TriConsumer<RESP, String, String> addHeaderFunction;
@@ -81,6 +84,7 @@ public class Metrics<REQ, RESP> {
      * @param value The value for the metric
      */
     public void insertWithId(MetricKey key, String reqId, long value) {
+        logger.debug("inserting metric {} with request id {} and value of {}", key, reqId, value);
         repository.insert(key, reqId, value);
     }
 
