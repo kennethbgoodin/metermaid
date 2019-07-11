@@ -13,11 +13,13 @@ import java.util.function.Function;
 
 /**
  * Tracks metrics for web server requests/responses and supplies various reductions of stored data including the maximum, minimum and average.
- * <p>
+ *
  * Stores data using the supplied {@link MetricRepository}.
- * <p>
+ *
  * Metrics are keyed via {@link MetricKey} instances. Some defaults are supplied in {@link MetricKeys}. Additionally
- * requests are keyed by the supplied key function.
+ * requests are identified by the supplied key function.
+ *
+ * Note that this instance can be safely shared between threads.
  *
  * @param <REQ>  The request class
  * @param <RESP> The response class
@@ -48,6 +50,7 @@ public class Metrics<REQ, RESP> {
     }
 
     public static double average(Map<String, Long> data) {
+
         double size = (double) data.size();
         double sum = (double) data.values()
                 .stream()

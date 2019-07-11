@@ -39,7 +39,7 @@ public class MetricFilter implements Filter {
         metrics.insert(MetricKeys.REQUEST_BODY_SIZE_BYTES, req, bodySize);
 
         HttpServletResponse resp = (HttpServletResponse) servletResponse;
-        // add header for later
+        // add header marking this as a metrics-tracked response
         metrics.addResponseHeader(resp, Metrics.METRIC_ID_HEADER, metrics.getRequestId(req));
 
         // since we are the first in the filter chain we can measure the time it takes to execute the entire chain up
